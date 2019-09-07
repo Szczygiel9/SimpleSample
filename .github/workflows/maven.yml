@@ -14,3 +14,5 @@ jobs:
       run: docker images ls
     - name: Run MongoDB
       run: docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:4.0.4
+    - name: Check running containers
+      run: docker ps
