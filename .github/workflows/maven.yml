@@ -10,3 +10,5 @@ jobs:
     - uses: actions/checkout@master
     - name: Pull MongoDB image
       run: docker pull mongo
+    - name: Check docker images
+      run: docker images ls
