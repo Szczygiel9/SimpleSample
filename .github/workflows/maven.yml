@@ -9,6 +9,4 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Pull MongoDB image
-    - run: docker pull mongo
-    - name: Run MongoDB
-    - run: docker run -d -p 27017-27019:27017-27019 --name mongodb mongo
+      run: docker pull mongo
