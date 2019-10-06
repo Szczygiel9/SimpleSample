@@ -1,10 +1,14 @@
 package pl.szczygielski.simplesample.domain;
 
-import pl.szczygielski.simplesample.domain.Column;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 public class Table {
 
-    private List<Column> colums;
+    private String tableName;
+    private List<Column> columns;
 }
