@@ -2,7 +2,7 @@ package pl.szczygielski.simplesample.processing;
 
 import pl.szczygielski.simplesample.domain.Column;
 import pl.szczygielski.simplesample.domain.Table;
-import pl.szczygielski.simplesample.populator.MockValuesPopulatorFactory;
+import pl.szczygielski.simplesample.populator.MockValuesPopulator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,8 +28,9 @@ public class SQLTableProcessing implements TableProcessing {
     }
 
     private List<String> getValuesRow(List<Column> columns) {
+        MockValuesPopulator valuesPopulator = new MockValuesPopulator();
         return columns.stream()
-                .map(column -> MockValuesPopulatorFactory.create(column.getType()))
+                .map(column -> valuesPopulator.create(column.getType()))
                 .collect(Collectors.toList());
     }
 }
