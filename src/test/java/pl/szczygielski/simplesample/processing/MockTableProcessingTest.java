@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pl.szczygielski.simplesample.domain.ColumnType;
 import pl.szczygielski.simplesample.domain.Table;
 import pl.szczygielski.simplesample.populator.MockValuesPopulator;
+import pl.szczygielski.simplesample.util.TableUtil;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -24,7 +25,7 @@ class MockTableProcessingTest {
 
     @Test
     void processingStringsTableWithSingleRow() {
-        Table table = createSingleTypeTable(ColumnType.VARCHAR);
+        Table table = TableUtil.createSingleTypeTable(ColumnType.VARCHAR);
         String processResult = tableProcessing.process(table);
 
         String expectedResult = MOCK_VALUES_HEADER + "MockVal MockVal MockVal MockVal ";
@@ -33,7 +34,7 @@ class MockTableProcessingTest {
 
     @Test
     void processingBoolTableWithSingleRow() {
-        Table table = createSingleTypeTable(ColumnType.BOOL);
+        Table table = TableUtil.createSingleTypeTable(ColumnType.BOOL);
         String processResult = tableProcessing.process(table);
 
         String expectedResult = MOCK_VALUES_HEADER + "true true true true ";
@@ -42,7 +43,7 @@ class MockTableProcessingTest {
 
     @Test
     void processingIntegerTableWithSingleRow() {
-        Table table = createSingleTypeTable(ColumnType.INTEGER);
+        Table table = TableUtil.createSingleTypeTable(ColumnType.INTEGER);
         String processResult = tableProcessing.process(table);
 
         String expectedResult = MOCK_VALUES_HEADER + "16 16 16 16 ";
@@ -51,7 +52,7 @@ class MockTableProcessingTest {
 
     @Test
     void processingDateTableWithSingleRow() {
-        Table table = createSingleTypeTable(ColumnType.DATE);
+        Table table = TableUtil.createSingleTypeTable(ColumnType.DATE);
         String processResult = tableProcessing.process(table);
 
         String expectedDate = new SimpleDateFormat("DD-MM-yyyy").format(Date.from(Instant.now()));
@@ -64,18 +65,12 @@ class MockTableProcessingTest {
 
     @Test
     void processingFloatTableWithSingleRow() {
-        Table table = createSingleTypeTable(ColumnType.FLOAT);
+        Table table = TableUtil.createSingleTypeTable(ColumnType.FLOAT);
         String processResult = tableProcessing.process(table);
 
         String expectedResult = MOCK_VALUES_HEADER + "12.2 12.2 12.2 12.2 ";
         assertEquals(expectedResult, processResult);
     }
 
-    private Table createSingleTypeTable(ColumnType type) {
-        return new Table("sample-table")
-                .withColumn("sample-column1", type)
-                .withColumn("sample-column2", type)
-                .withColumn("sample-column3", type)
-                .withColumn("sample-column4", type);
-    }
+
 }
