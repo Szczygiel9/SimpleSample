@@ -1,28 +1,28 @@
 package pl.szczygielski.simplesample.populator;
 
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 import pl.szczygielski.simplesample.domain.ColumnType;
+import pl.szczygielski.simplesample.valuefactory.*;
 
 import javax.activation.UnsupportedDataTypeException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Date;
 
-public class MockValuesPopulator implements ValuesPopulator {
+@Component
+public class FactoryValuesPopulator implements ValuesPopulator {
 
     @SneakyThrows
     public String create(ColumnType type) {
         switch (type) {
             case BOOL:
-                return "true";
+                return new BooleanFactory().produce();
             case DATE:
-                return new SimpleDateFormat("DD-MM-yyyy").format(Date.from(Instant.now()));
+                return new DateFactory().produce();
             case FLOAT:
-                return "12.2";
+                return new FloatFactory().produce();
             case INTEGER:
-                return "16";
+                return new IntegerFactory().produce();
             case VARCHAR:
-                return "MockVal";
+                return new StringFactory().produce();
             default:
                 throw new UnsupportedDataTypeException(type + " not supported");
         }
