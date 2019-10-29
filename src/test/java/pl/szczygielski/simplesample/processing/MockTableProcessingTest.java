@@ -26,7 +26,7 @@ class MockTableProcessingTest {
     @Test
     void processingStringsTableWithSingleRow() {
         Table table = TableUtil.createSingleTypeTable(ColumnType.VARCHAR);
-        String processResult = tableProcessing.process(table);
+        String processResult = tableProcessing.process(table, 1);
 
         String expectedResult = MOCK_VALUES_HEADER + "MockVal MockVal MockVal MockVal ";
         assertEquals(expectedResult, processResult);
@@ -35,7 +35,7 @@ class MockTableProcessingTest {
     @Test
     void processingBoolTableWithSingleRow() {
         Table table = TableUtil.createSingleTypeTable(ColumnType.BOOL);
-        String processResult = tableProcessing.process(table);
+        String processResult = tableProcessing.process(table, 1);
 
         String expectedResult = MOCK_VALUES_HEADER + "true true true true ";
         assertEquals(expectedResult, processResult);
@@ -44,7 +44,7 @@ class MockTableProcessingTest {
     @Test
     void processingIntegerTableWithSingleRow() {
         Table table = TableUtil.createSingleTypeTable(ColumnType.INTEGER);
-        String processResult = tableProcessing.process(table);
+        String processResult = tableProcessing.process(table, 1);
 
         String expectedResult = MOCK_VALUES_HEADER + "16 16 16 16 ";
         assertEquals(expectedResult, processResult);
@@ -53,7 +53,7 @@ class MockTableProcessingTest {
     @Test
     void processingDateTableWithSingleRow() {
         Table table = TableUtil.createSingleTypeTable(ColumnType.DATE);
-        String processResult = tableProcessing.process(table);
+        String processResult = tableProcessing.process(table, 1);
 
         String expectedDate = new SimpleDateFormat("DD-MM-yyyy").format(Date.from(Instant.now()));
         String expectedResult = MOCK_VALUES_HEADER + expectedDate + " "
@@ -66,7 +66,7 @@ class MockTableProcessingTest {
     @Test
     void processingFloatTableWithSingleRow() {
         Table table = TableUtil.createSingleTypeTable(ColumnType.FLOAT);
-        String processResult = tableProcessing.process(table);
+        String processResult = tableProcessing.process(table, 1);
 
         String expectedResult = MOCK_VALUES_HEADER + "12.2 12.2 12.2 12.2 ";
         assertEquals(expectedResult, processResult);
