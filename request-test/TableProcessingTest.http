@@ -1,0 +1,41 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection) or
+# paste cURL into the file and request will be converted to HTTP Request format.
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+POST http://localhost:8080/processTable
+Content-Type: application/json
+
+{
+  "table": {
+    "tableName": "sample-table",
+    "columns": [
+      {
+        "name": "sample-column1",
+        "type": "VARCHAR"
+      },
+      {
+        "name": "sample-column2",
+        "type": "BOOL"
+      },
+      {
+        "name": "sample-column3",
+        "type": "INTEGER"
+      },
+      {
+        "name": "sample-column4",
+        "type": "FLOAT"
+      },
+      {
+        "name": "sample-column4",
+        "type": "DATE"
+      }
+    ]
+  },
+  "rowsToProduce": 100
+}
+
+###
