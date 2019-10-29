@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 import pl.szczygielski.simplesample.domain.Table;
 import pl.szczygielski.simplesample.populator.ValuesPopulator;
 
-@Component
 public class MockTableProcessing implements TableProcessing {
 
     private ValuesPopulator valuesPopulator;
@@ -14,7 +13,7 @@ public class MockTableProcessing implements TableProcessing {
     }
 
     @Override
-    public String process(Table table) {
+    public String process(Table table, int rowsToProduce) {
         StringBuilder mockResultBuilder = new StringBuilder()
                 .append("Mock values for ")
                 .append(table.getTableName())

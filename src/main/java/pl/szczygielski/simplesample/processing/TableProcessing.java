@@ -4,5 +4,5 @@ import pl.szczygielski.simplesample.domain.Table;
 
 public interface TableProcessing {
 
-    public String process(Table table);
+    String process(Table table, int rowsToProduce);
 }
