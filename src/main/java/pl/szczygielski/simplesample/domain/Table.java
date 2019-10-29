@@ -16,6 +16,11 @@ public class Table {
         columns = new ArrayList<>();
     }
 
+    public Table(String tableName, List<Column> columns) {
+        this.tableName = tableName;
+        this.columns = columns;
+    }
+
     public Table withColumn(String name, ColumnType type) {
         Column column = Column.builder()
                 .name(name)
