@@ -18,7 +18,7 @@ public class NamesController {
         this.namesRepository = namesRepository;
     }
 
-    @GetMapping(value = "/names", params = {"page", "size"})
+    @GetMapping(value = "/name", params = {"page", "size"})
     public Page<String> getNames(@RequestParam("page") int page, @RequestParam("size") int size) {
         final Page<Name> namePage = namesRepository.findAll(PageRequest.of(page, size));
         if (page > namePage.getTotalPages()) {
