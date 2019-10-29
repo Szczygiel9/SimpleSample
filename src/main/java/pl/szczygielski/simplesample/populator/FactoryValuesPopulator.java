@@ -1,6 +1,7 @@
 package pl.szczygielski.simplesample.populator;
 
 import lombok.SneakyThrows;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import pl.szczygielski.simplesample.domain.ColumnType;
 import pl.szczygielski.simplesample.valuefactory.*;
@@ -8,6 +9,7 @@ import pl.szczygielski.simplesample.valuefactory.*;
 import javax.activation.UnsupportedDataTypeException;
 
 @Component
+@Profile("Prod")
 public class FactoryValuesPopulator implements ValuesPopulator {
 
     @SneakyThrows

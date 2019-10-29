@@ -1,9 +1,12 @@
 package pl.szczygielski.simplesample.processing;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import pl.szczygielski.simplesample.domain.Table;
 import pl.szczygielski.simplesample.populator.ValuesPopulator;
 
+@Component
+@Profile("Mock")
 public class MockTableProcessing implements TableProcessing {
 
     private ValuesPopulator valuesPopulator;

@@ -1,10 +1,10 @@
 package pl.szczygielski.simplesample.processing;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import pl.szczygielski.simplesample.domain.Column;
 import pl.szczygielski.simplesample.domain.ColumnType;
 import pl.szczygielski.simplesample.domain.Table;
-import pl.szczygielski.simplesample.populator.MockValuesPopulator;
 import pl.szczygielski.simplesample.populator.ValuesPopulator;
 
 import java.util.List;
@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Component
+@Profile("Prod")
 public class SQLTableProcessing implements TableProcessing {
 
     private ValuesPopulator populator;

@@ -1,6 +1,8 @@
 package pl.szczygielski.simplesample.populator;
 
 import lombok.SneakyThrows;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 import pl.szczygielski.simplesample.domain.ColumnType;
 
 import javax.activation.UnsupportedDataTypeException;
@@ -8,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
+@Component
+@Profile("Mock")
 public class MockValuesPopulator implements ValuesPopulator {
 
     @SneakyThrows
