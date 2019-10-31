@@ -18,6 +18,7 @@ public class StartupInitializer implements CommandLineRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(StartupInitializer.class);
     private List<SampleDataInitializer> initializers = new ArrayList<>();
 
+    //TODO find better way of init initializers (no arg constructor)
     @Autowired
     public StartupInitializer(NamesRepository namesRepository) {
         initializers.add(new NamesInitializer(namesRepository));
