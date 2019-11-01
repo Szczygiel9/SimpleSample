@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Component
-@Profile("Prod")
+@Profile("dev")
 public class SQLTableProcessing implements TableProcessing {
 
     private ValuesPopulator populator;

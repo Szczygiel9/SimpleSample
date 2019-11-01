@@ -1,7 +1,7 @@
 package pl.szczygielski.simplesample.sampledata.bootstrap;
 
 import lombok.SneakyThrows;
-import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.FileSystemResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -23,7 +23,7 @@ public abstract class SampleDataInitializer<T> {
     public void initData() {
         String fileName = getFileName();
 
-        ResourceLoader resourceLoader = new DefaultResourceLoader();
+        ResourceLoader resourceLoader = new FileSystemResourceLoader();
         final Resource resource = resourceLoader.getResource("classpath:" + fileName);
         final File file = resource.getFile();
 

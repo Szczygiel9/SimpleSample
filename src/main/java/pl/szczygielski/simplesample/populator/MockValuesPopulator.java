@@ -11,7 +11,7 @@ import java.time.Instant;
 import java.util.Date;
 
 @Component
-@Profile("Mock")
+@Profile("mock")
 public class MockValuesPopulator implements ValuesPopulator {
 
     @SneakyThrows

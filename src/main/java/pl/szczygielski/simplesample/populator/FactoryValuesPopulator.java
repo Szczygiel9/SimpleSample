@@ -9,7 +9,7 @@ import pl.szczygielski.simplesample.valuefactory.*;
 import javax.activation.UnsupportedDataTypeException;
 
 @Component
-@Profile("Prod")
+@Profile("dev")
 public class FactoryValuesPopulator implements ValuesPopulator {
 
     @SneakyThrows

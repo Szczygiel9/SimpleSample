@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@Profile("Data-init")
+@Profile("data-init")
 public class StartupInitializer implements CommandLineRunner {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StartupInitializer.class);

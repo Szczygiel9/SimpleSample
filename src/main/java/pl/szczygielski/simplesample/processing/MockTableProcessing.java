@@ -6,7 +6,7 @@ import pl.szczygielski.simplesample.domain.Table;
 import pl.szczygielski.simplesample.populator.ValuesPopulator;
 
 @Component
-@Profile("Mock")
+@Profile("mock")
 public class MockTableProcessing implements TableProcessing {
 
     private ValuesPopulator valuesPopulator;
