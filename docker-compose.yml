@@ -1,0 +1,15 @@
+version: "3"
+services:
+  db:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - 27017:27017
+
+  app:
+    image: simple-sample
+    working_dir: /simple-sample/app
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
