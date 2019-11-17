@@ -11,26 +11,26 @@ Content-Type: application/json
 
 {
   "table": {
-    "tableName": "sample-table",
+    "tableName": "sample_table",
     "columns": [
       {
-        "name": "sample-column1",
+        "name": "sample_column1",
         "type": "VARCHAR"
       },
       {
-        "name": "sample-column2",
+        "name": "sample_column2",
         "type": "BOOL"
       },
       {
-        "name": "sample-column3",
+        "name": "sample_column3",
         "type": "INTEGER"
       },
       {
-        "name": "sample-column4",
+        "name": "sample_column4",
         "type": "FLOAT"
       },
       {
-        "name": "sample-column4",
+        "name": "sample_column4",
         "type": "DATE"
       }
     ]
