@@ -3,16 +3,16 @@ package pl.szczygielski.simplesample.processing;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import pl.szczygielski.simplesample.domain.Table;
-import pl.szczygielski.simplesample.populator.ValuesPopulator;
+import pl.szczygielski.simplesample.populator.ValuesFactory;
 
 @Component
 @Profile("mock")
-public class MockTableProcessing implements TableProcessing {
+public class MockTableProcessing implements TableProducer {
 
-    private ValuesPopulator valuesPopulator;
+    private ValuesFactory valuesFactory;
 
-    public MockTableProcessing(ValuesPopulator valuesPopulator) {
-        this.valuesPopulator = valuesPopulator;
+    public MockTableProcessing(ValuesFactory valuesFactory) {
+        this.valuesFactory = valuesFactory;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class MockTableProcessing implements TableProcessing {
 
         table.getColumns()
                 .forEach(column -> {
-                    mockResultBuilder.append(valuesPopulator.create(column.getType()));
+                    mockResultBuilder.append(valuesFactory.create(column.getType()));
                     mockResultBuilder.append(" ");
                 });
         return mockResultBuilder.toString();

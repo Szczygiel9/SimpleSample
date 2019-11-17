@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.szczygielski.simplesample.domain.ColumnType;
 import pl.szczygielski.simplesample.domain.Table;
-import pl.szczygielski.simplesample.populator.MockValuesPopulator;
+import pl.szczygielski.simplesample.populator.MockValuesFactory;
 import pl.szczygielski.simplesample.util.TableUtil;
 
 import java.text.SimpleDateFormat;
@@ -15,12 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MockTableProcessingTest {
 
-    private TableProcessing tableProcessing;
+    private TableProducer tableProcessing;
     private final String MOCK_VALUES_HEADER = "Mock values for sample-table table:\n";
 
     @BeforeEach
     void setUp() {
-        tableProcessing = new MockTableProcessing(new MockValuesPopulator());
+        tableProcessing = new MockTableProcessing(new MockValuesFactory());
     }
 
     @Test

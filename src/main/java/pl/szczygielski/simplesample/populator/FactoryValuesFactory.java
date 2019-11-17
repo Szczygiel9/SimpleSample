@@ -10,7 +10,7 @@ import javax.activation.UnsupportedDataTypeException;
 
 @Component
 @Profile("dev")
-public class FactoryValuesPopulator implements ValuesPopulator {
+public class FactoryValuesFactory implements ValuesFactory {
 
     @SneakyThrows
     public String create(ColumnType type) {

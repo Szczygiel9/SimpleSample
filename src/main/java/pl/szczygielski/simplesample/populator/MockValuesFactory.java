@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Component
 @Profile("mock")
-public class MockValuesPopulator implements ValuesPopulator {
+public class MockValuesFactory implements ValuesFactory {
 
     @SneakyThrows
     public String create(ColumnType type) {
