@@ -4,6 +4,7 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class Table {
@@ -28,5 +29,19 @@ public class Table {
                 .build();
         columns.add(column);
         return this;
+    }
+
+    public List<String> getColumnsNames() {
+        return this.columns
+                .stream()
+                .map(Column::getName)
+                .collect(Collectors.toList());
+    }
+
+    public List<ColumnType> getColumnsTypes() {
+        return this.columns
+                .stream()
+                .map(Column::getType)
+                .collect(Collectors.toList());
     }
 }
