@@ -18,15 +18,21 @@ public class FactoryValuesPopulator implements ValuesPopulator {
             case BOOL:
                 return new BooleanFactory().produce();
             case DATE:
-                return new DateFactory().produce();
+                final String producedDate = new DateFactory().produce();
+                return surroundWithQuotationMarks(producedDate);
             case FLOAT:
                 return new FloatFactory().produce();
             case INTEGER:
                 return new IntegerFactory().produce();
             case VARCHAR:
-                return new StringFactory().produce();
+                final String producedString = new StringFactory().produce();
+                return surroundWithQuotationMarks(producedString);
             default:
                 throw new UnsupportedDataTypeException(type + " not supported");
         }
+    }
+
+    private String surroundWithQuotationMarks(String producedValue) {
+        return "\"" + producedValue + "\"";
     }
 }
