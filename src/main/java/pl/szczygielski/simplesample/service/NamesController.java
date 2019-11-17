@@ -19,7 +19,8 @@ public class NamesController {
     }
 
     @GetMapping(value = "/name", params = {"page", "size"})
-    public Page<String> getNames(@RequestParam("page") int page, @RequestParam("size") int size) {
+    public Page<String> getNames(@RequestParam(value = "page", defaultValue = "1") int page,
+                                 @RequestParam(value = "size", defaultValue = "25") int size) {
         final Page<Name> namePage = namesRepository.findAll(PageRequest.of(page, size));
         if (page > namePage.getTotalPages()) {
             throw new ResourceNotFoundException();

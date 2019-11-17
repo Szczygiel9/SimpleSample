@@ -7,23 +7,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import pl.szczygielski.simplesample.processing.TableProcessing;
+import pl.szczygielski.simplesample.processing.TableProducer;
 
 @RestController
 public class TableController {
 
-    private TableProcessing processing;
+    private TableProducer producer;
     private final Logger LOGGER = LoggerFactory.getLogger(TableController.class);
 
     @Autowired
-    public TableController(TableProcessing processing) {
-        this.processing = processing;
+    public TableController(TableProducer producer) {
+        this.producer = producer;
     }
 
     @PostMapping("/processTable")
     public ResponseEntity<String> processTable(@RequestBody TableProcessesRequestBody requestBody) {
         LOGGER.info("Processing request body:  " + requestBody);
-        final String response = processing.process(requestBody.getTable(), requestBody.getRowsToProduce());
+        final String response = producer.process(requestBody.getTable(), requestBody.getRowsToProduce());
         LOGGER.info("Response table:  " + response);
         return ResponseEntity.ok(response);
     }
