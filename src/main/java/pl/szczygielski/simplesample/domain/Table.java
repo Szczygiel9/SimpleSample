@@ -1,5 +1,6 @@
 package pl.szczygielski.simplesample.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class Table {
         return this;
     }
 
+    @JsonIgnore
     public List<String> getColumnsNames() {
         return this.columns
                 .stream()
@@ -38,6 +40,7 @@ public class Table {
                 .collect(Collectors.toList());
     }
 
+    @JsonIgnore
     public List<ColumnType> getColumnsTypes() {
         return this.columns
                 .stream()
