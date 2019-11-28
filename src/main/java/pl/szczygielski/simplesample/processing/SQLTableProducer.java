@@ -4,17 +4,13 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import pl.szczygielski.simplesample.domain.ColumnType;
 import pl.szczygielski.simplesample.domain.Table;
-import pl.szczygielski.simplesample.populator.ValuesFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Component
-@Profile("dev")
 public class SQLTableProducer implements TableProducer {
-
-    private ValuesFactory valuesFactory;
 
     private static final String INSERT_INTO = "INSERT INTO";
     private static final String VALUES = "VALUES";
@@ -23,10 +19,6 @@ public class SQLTableProducer implements TableProducer {
     private static final String SPACE = " ";
     private static final String NEW_LINE = "\n";
     private static final String COMMA_SEPARATOR = ", ";
-
-    public SQLTableProducer(ValuesFactory valuesFactory) {
-        this.valuesFactory = valuesFactory;
-    }
 
     @Override
     public String process(Table table, int rowsToProduce) {
@@ -75,7 +67,7 @@ public class SQLTableProducer implements TableProducer {
     private String getValuesRow(List<ColumnType> columnTypes) {
         final List<String> producedValues = columnTypes
                 .stream()
-                .map(valuesFactory::create)
+                .map(ColumnType::produceValue)
                 .collect(Collectors.toList());
         return String.join(COMMA_SEPARATOR, producedValues);
     }
