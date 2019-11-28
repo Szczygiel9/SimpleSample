@@ -2,7 +2,7 @@ package pl.szczygielski.simplesample.valuefactory;
 
 import java.util.Random;
 
-public class FloatFactory {
+public class FloatFactory implements DatatypeValueFactory {
     public String produce() {
         final Random random = new Random();
         final int multiplier = random.nextInt();
