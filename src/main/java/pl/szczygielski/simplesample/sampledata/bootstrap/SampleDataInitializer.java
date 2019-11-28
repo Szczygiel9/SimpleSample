@@ -24,7 +24,7 @@ public abstract class SampleDataInitializer<T> {
         String fileName = getFileName();
 
         ResourceLoader resourceLoader = new FileSystemResourceLoader();
-        final Resource resource = resourceLoader.getResource(fileName);
+        final Resource resource = resourceLoader.getResource("classpath:" + fileName);
         final File file = resource.getFile();
 
         try (final BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
