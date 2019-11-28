@@ -8,9 +8,11 @@ import lombok.Getter;
 public class Column {
     private String name;
     private ColumnType type;
+    private PredictedValue predictedValue;
 
-    public Column(String name, ColumnType type) {
+    public Column(String name, ColumnType type, PredictedValue predictedValue) {
         this.name = name;
         this.type = type;
+        this.predictedValue = predictedValue;
     }
 }
