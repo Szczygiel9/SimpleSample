@@ -1,0 +1,18 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo "pre-build phase"
+      - mvn clean
+  build:
+    commands:
+      - echo "build phase"
+      - mvn package
+  post_build:
+    commands:
+      - echo "post-build phase"
+      - ls -a -l ./target
+      - mv ./target/simple-sample-0.0.1-SNAPSHOT.jar .
+artifacts:
+  files:
+    - simple-sample-0.0.1-SNAPSHOT.jar
