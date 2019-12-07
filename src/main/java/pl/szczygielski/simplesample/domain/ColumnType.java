@@ -2,21 +2,24 @@ package pl.szczygielski.simplesample.domain;
 
 import pl.szczygielski.simplesample.valuefactory.*;
 
+import java.util.function.Supplier;
+
 public enum ColumnType {
-    //TODO find better way of creating factories here
-    VARCHAR(new StringFactory()),
-    BOOL(new BooleanFactory()),
-    INTEGER(new IntegerFactory()),
-    FLOAT(new FloatFactory()),
-    DATE(new DateFactory());
 
-    private DatatypeValueFactory valueFactory;
+    //TODO: still find better way of this. Do not depend on specific factories
+    VARCHAR(() -> new StringFactory().produce()),
+    BOOL(() -> new BooleanFactory().produce()),
+    INTEGER(() -> new IntegerFactory().produce()),
+    FLOAT(() -> new FloatFactory().produce()),
+    DATE(() -> new DateFactory().produce());
 
-    ColumnType(DatatypeValueFactory factory) {
-        this.valueFactory = factory;
+    private Supplier<String> valueSupplier;
+
+    ColumnType(Supplier<String> valueSupplier) {
+        this.valueSupplier = valueSupplier;
     }
 
     public String produceValue() {
-        return this.valueFactory.produce();
+        return this.valueSupplier.get();
     }
 }
