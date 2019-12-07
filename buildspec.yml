@@ -11,7 +11,6 @@ phases:
   post_build:
     commands:
       - echo "post-build phase"
-      - ls -a -l ./target
       - mv ./target/simple-sample-0.0.1-SNAPSHOT.jar .
 artifacts:
   files:
