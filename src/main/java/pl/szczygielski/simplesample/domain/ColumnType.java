@@ -1,25 +1,24 @@
 package pl.szczygielski.simplesample.domain;
 
-import pl.szczygielski.simplesample.valuefactory.*;
+import pl.szczygielski.simplesample.randomvaluesfactory.*;
 
 import java.util.function.Supplier;
 
 public enum ColumnType {
 
-    //TODO: still find better way of this. Do not depend on specific factories
-    VARCHAR(() -> new StringFactory().produce()),
-    BOOL(() -> new BooleanFactory().produce()),
-    INTEGER(() -> new IntegerFactory().produce()),
-    FLOAT(() -> new FloatFactory().produce()),
-    DATE(() -> new DateFactory().produce());
+    VARCHAR(StringFactory::new),
+    BOOL(BooleanFactory::new),
+    INTEGER(IntegerFactory::new),
+    FLOAT(FloatFactory::new),
+    DATE(DateFactory::new);
 
-    private Supplier<String> valueSupplier;
+    private final Supplier<DatatypeValueFactory> dataFactorySupplier;
 
-    ColumnType(Supplier<String> valueSupplier) {
-        this.valueSupplier = valueSupplier;
+    ColumnType(Supplier<DatatypeValueFactory> dataFactorySupplier) {
+        this.dataFactorySupplier = dataFactorySupplier;
     }
 
     public String produceValue() {
-        return this.valueSupplier.get();
+        return this.dataFactorySupplier.get().produce();
     }
 }

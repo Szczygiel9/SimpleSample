@@ -1,9 +1,11 @@
 package pl.szczygielski.simplesample.processing;
 
-import org.springframework.context.annotation.Profile;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.szczygielski.simplesample.domain.ColumnType;
+import pl.szczygielski.simplesample.domain.Column;
 import pl.szczygielski.simplesample.domain.Table;
+import pl.szczygielski.simplesample.request.TableProcessesRequestBody;
+import pl.szczygielski.simplesample.valuesprovider.ValuesProvider;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,17 +22,27 @@ public class SQLTableProducer implements TableProducer {
     private static final String NEW_LINE = "\n";
     private static final String COMMA_SEPARATOR = ", ";
 
+    private ValuesProvider valuesProvider;
+
+    @Autowired
+    public SQLTableProducer(ValuesProvider valuesProvider) {
+        this.valuesProvider = valuesProvider;
+    }
+
     @Override
-    public String process(Table table, int rowsToProduce) {
+    public String process(TableProcessesRequestBody requestBody) {
+        final Table table = requestBody.getTable();
+        final int rowsToProduce = requestBody.getRowsToProduce();
+
         final List<String> columnsNames = table.getColumnsNames();
-        final List<ColumnType> columnTypes = table.getColumnsTypes();
+        final List<Column> columns = table.getColumns();
 
         final StringBuilder queryBuilder = new StringBuilder();
 
         prepareQueryEntry(table.getTableName(), columnsNames, queryBuilder);
         IntStream.range(1, rowsToProduce - 1)
-                .forEach(value -> appendValuesRow(columnTypes, queryBuilder, true));
-        appendValuesRow(columnTypes, queryBuilder, false);
+                .forEach(value -> appendValuesRow(columns, queryBuilder, true));
+        appendValuesRow(columns, queryBuilder, false);
 
         return queryBuilder.append(";").toString();
     }
@@ -50,8 +62,8 @@ public class SQLTableProducer implements TableProducer {
                 .append(NEW_LINE);
     }
 
-    private void appendValuesRow(List<ColumnType> columnTypes, StringBuilder queryBuilder, boolean withCommaSeparator) {
-        final String valuesRow = getValuesRow(columnTypes);
+    private void appendValuesRow(List<Column> columns, StringBuilder queryBuilder, boolean withCommaSeparator) {
+        final String valuesRow = getValuesRow(columns);
         queryBuilder
                 .append(OPENING_BRACKET)
                 .append(valuesRow)
@@ -64,10 +76,10 @@ public class SQLTableProducer implements TableProducer {
         queryBuilder.append(NEW_LINE);
     }
 
-    private String getValuesRow(List<ColumnType> columnTypes) {
-        final List<String> producedValues = columnTypes
+    private String getValuesRow(List<Column> columns) {
+        final List<String> producedValues = columns
                 .stream()
-                .map(ColumnType::produceValue)
+                .map(column -> valuesProvider.getValue(column.getType(), column.getPredictedValue()))
                 .collect(Collectors.toList());
         return String.join(COMMA_SEPARATOR, producedValues);
     }

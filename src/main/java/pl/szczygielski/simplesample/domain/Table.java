@@ -39,12 +39,4 @@ public class Table {
                 .map(Column::getName)
                 .collect(Collectors.toList());
     }
-
-    @JsonIgnore
-    public List<ColumnType> getColumnsTypes() {
-        return this.columns
-                .stream()
-                .map(Column::getType)
-                .collect(Collectors.toList());
-    }
 }

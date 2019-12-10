@@ -1,4 +1,4 @@
-package pl.szczygielski.simplesample.service;
+package pl.szczygielski.simplesample.request;
 
 import lombok.Getter;
 import pl.szczygielski.simplesample.domain.Table;

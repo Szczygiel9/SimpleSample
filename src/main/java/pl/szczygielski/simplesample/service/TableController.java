@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.szczygielski.simplesample.processing.TableProducer;
+import pl.szczygielski.simplesample.request.TableProcessesRequestBody;
 
 @RestController
 public class TableController {
@@ -23,7 +24,7 @@ public class TableController {
     @PostMapping("/processTable")
     public ResponseEntity<String> processTable(@RequestBody TableProcessesRequestBody requestBody) {
         LOGGER.info("Processing request body:  " + requestBody);
-        final String response = producer.process(requestBody.getTable(), requestBody.getRowsToProduce());
+        final String response = producer.process(requestBody);
         LOGGER.info("Response table:  " + response);
         return ResponseEntity.ok(response);
     }
