@@ -1,4 +1,4 @@
-package pl.szczygielski.simplesample.valuefactory;
+package pl.szczygielski.simplesample.randomvaluesfactory;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

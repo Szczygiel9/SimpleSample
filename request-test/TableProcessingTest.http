@@ -6,7 +6,7 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-POST http://localhost:8080/processTable
+POST http://localhost:5000/processTable
 Content-Type: application/json
 
 {
@@ -15,7 +15,7 @@ Content-Type: application/json
     "columns": [
       {
         "name": "sample_column1",
-        "type": "VARCHAR"
+        "predictedValue": "NAME"
       },
       {
         "name": "sample_column2",
