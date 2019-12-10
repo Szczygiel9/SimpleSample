@@ -1,4 +1,4 @@
-package pl.szczygielski.simplesample.valuefactory;
+package pl.szczygielski.simplesample.randomvaluesfactory;
 
 public interface DatatypeValueFactory {
     String produce();

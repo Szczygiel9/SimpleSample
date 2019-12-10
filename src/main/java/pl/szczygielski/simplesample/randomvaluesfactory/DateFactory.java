@@ -1,4 +1,4 @@
-package pl.szczygielski.simplesample.valuefactory;
+package pl.szczygielski.simplesample.randomvaluesfactory;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.logging.log4j.util.Strings;
